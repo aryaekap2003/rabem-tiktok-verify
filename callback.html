@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>RABEM TikTok Audit - Menghubungkan...</title>
+<style>
+body { font-family: -apple-system, sans-serif; background:#0f1115; color:#eaeaea; display:flex; align-items:center; justify-content:center; height:100vh; margin:0; }
+.card { max-width:420px; padding:24px; background:#171a21; border-radius:14px; text-align:center; }
+</style>
+</head>
+<body>
+<div class="card">
+<h2>Lagi nyambungin akun TikTok...</h2>
+<p id="msg">Tunggu sebentar, jangan tutup halaman ini.</p>
+</div>
+<script>
+var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz1dr-BSwShXJtVzqmqaB4Cc7tyZWylIhu4Lvf9PULVgLmoUkdrVjlklgR-B2Vcqe129Q/exec';
+var params = new URLSearchParams(window.location.search);
+var code = params.get('code');
+var state = params.get('state');
+var error = params.get('error');
+var errorDesc = params.get('error_description');
+if (code) {
+var target = APPS_SCRIPT_URL + '?tiktok_code=' + encodeURIComponent(code);
+if (state) target += '&state=' + encodeURIComponent(state);
+window.location.href = target;
+} else {
+document.getElementById('msg').textContent = 'Gagal connect: ' + (errorDesc || error || 'gak ada kode otorisasi yang diterima.');
+}
+</script>
+</body>
+</html>
